@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <!-- Google Web Fonts
+  ================================================== -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900%7CLora:400,400i,700,700i" rel="stylesheet">
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <title>Our Pastors - JTLIM Church</title>
+
+  <!-- meta info -->
+  <meta charset="utf-8">
+  <meta name="author" content="JTLIM">
+  <meta name="keywords" content="jtlim,pastors,church,mombasa,kenya">
+  <meta name="description" content="Meet our Pastoral Team at JTLIM Church Mombasa">
+
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- Vendor CSS
+  ============================================ -->
+  <link rel="stylesheet" href="font/demo-files/demo.css">
+  <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.css">
+
+  <!-- CSS theme files
+  ============================================ -->
+  <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="css/fontello.css">
+  <link rel="stylesheet" href="css/owl.carousel.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <!-- Custom Slideshow Styles -->
+  <style>
+    .pastor-slider-section {
+      padding: 60px 0;
+      background-color: #f9f9f9;
+    }
+    .pastor-slider-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      background: #ffffff;
+    }
+    .pastor-slide {
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    .pastor-slide.active {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .pastor-image-col {
+      flex: 1 1 350px;
+      max-width: 100%;
+      background: #ececec;
+    }
+    .pastor-image-col img {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+    .pastor-info-col {
+      flex: 1 1 350px;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .pastor-role {
+      color: #c93838;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .pastor-name {
+      font-size: 26px;
+      margin-bottom: 15px;
+      color: #222;
+      font-family: 'Lora', serif;
+      font-weight: 700;
+    }
+    .pastor-bio {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    /* Controls */
+    .pastor-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      border: none;
+      font-size: 20px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pastor-nav-btn:hover {
+      background: #c93838;
+    }
+    .pastor-prev { left: 15px; }
+    .pastor-next { right: 15px; }
+
+    .dots-holder {
+      text-align: center;
+      margin-top: 25px;
+    }
+    .slider-dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 4px;
+      background-color: #ccc;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .slider-dot.active, .slider-dot:hover {
+      background-color: #c93838;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="loader"></div>
+
+  <!-- Wrapper -->
+  <div id="wrapper" class="wrapper-container">
+
+    <!-- Mobile Menu -->
+    <nav id="mobile-advanced" class="mobile-advanced"></nav>
+
+    <!-- Header -->
+    <header id="header" class="header sticky-header fixed-header">
+      <div class="top-header">
+        <div class="logo-wrap">
+          <a href="index.html" class="logo"><img src="images/jtlim-logo.jpg" alt="JTLIM Logo" style="height: 80px; width: 80px;"></a>
+        </div>
+
+        <div class="menu-holder">
+          <div class="menu-wrap">
+            <div class="nav-item">
+              <nav id="main-navigation" class="main-navigation">
+                <ul id="menu" class="clearfix">
+                  <li><a href="index.html">Welcome</a>
+                    <div class="sub-menu-wrap">
+                      <ul>
+                        <li><a href="about_us.html#about">About</a></li>
+                        <li><a href="about_us.html#believe">What We Believe</a></li>
+                        <li><a href="about_us.html#mission">Our Mission</a></li>
+                        <li><a href="about_us.html#values">Our Values</a></li>
+                        <li><a href="about_us.html#priorities">Our Priorities</a></li>
+                        <li><a href="about_us.html#faith">Statement of Faith</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="current"><a href="pastors.html">Pastors</a></li>
+                  <li><a target="_blank" href="https://www.youtube.com/channel/UCVoVQXN3mfFocdWY2ioH16g">Sermons</a></li>
+                  <li><a href="ministries.html">Ministries</a></li>
+                  <li><a target="_blank" href="https://www.facebook.com/profile.php?id=100089651652273">Galleries</a></li>
+                  <li><a href="church_events.html">Events</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-btns" style="display: flex; align-items: center;">
+          <div class="live-stream-group">
+            <a target="_blank" href="https://www.youtube.com/channel/UCVoVQXN3mfFocdWY2ioH16g" class="btn-live btn-live-yt">
+              <span class="pulse-ring"></span> Live YouTube
+            </a>
+            <a target="_blank" href="https://www.facebook.com/profile.php?id=100089651652273" class="btn-live btn-live-fb">
+              <span class="pulse-ring"></span> Live Facebook
+            </a>
+          </div>
+          <div class="head-btn">
+            <a href="give_serve.html" class="btn btn-big btn-style-5">Give <span>Online</span></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div id="content">
+
+      <!-- Breadcrumbs Banner -->
+      <div class="breadcrumbs-wrap page-section-bg parallax-section" data-bg="images/bg_d.jpg" style="padding: 60px 0; text-align: center; color: #fff;">
+        <div class="container wide">
+          <h1 class="title2" style="color: #fff; margin-bottom: 10px;">Our Pastoral Leadership</h1>
+          <p style="font-size: 16px;">Dedicated servants committed to shepherding, teaching, and serving JTLIM Church Mombasa.</p>
+        </div>
+      </div>
+
+      <!-- Pastors Slideshow Section -->
+      <div class="page-section pastor-slider-section">
+        <div class="container">
+          
+          <div class="pastor-slider-container">
+
+            <!-- SLIDE 1 -->
+            <div class="pastor-slide active">
+              <div class="pastor-image-col">
+                <img src="images/pastors.jpg" alt="Rev. Apostle Hezron & Violet Obilo Kisiara">
+              </div>
+              <div class="pastor-info-col">
+                <span class="pastor-role">Founders & Senior Pastors</span>
+                <h3 class="pastor-name">Rev. Apostle Hezron Obilo & Violet Obilo Kisiara</h3>
+                <p class="pastor-bio">
+                  Founders of Jesus Transforming Lives International Ministry Mombasa Kenya since 2014. They lead with a commitment to transforming lives through the preaching of God's Word, prayer, and holistic community support.
+                </p>
+                <a href="contact.html" class="btn btn-style-3" style="align-self: flex-start;">Connect With Us</a>
+              </div>
+            </div>
+
+            <!-- SLIDE 2 -->
+            <div class="pastor-slide">
+              <div class="pastor-image-col">
+                <img src="images/bg_e.jpeg" alt="Associate Pastor">
+              </div>
+              <div class="pastor-info-col">
+                <span class="pastor-role">Associate Pastor</span>
+                <h3 class="pastor-name">Pastor Associate Name</h3>
+                <p class="pastor-bio">
+                  Overseeing Home Bible Care (HBC) Fellowships, member care, and discipleship programs to help believers deepen their faith and connection.
+                </p>
+                <a href="contact.html" class="btn btn-style-3" style="align-self: flex-start;">Connect With Us</a>
+              </div>
+            </div>
+
+            <!-- SLIDE 3 -->
+            <div class="pastor-slide">
+              <div class="pastor-image-col">
+                <img src="images/ministry_c.jpeg" alt="Youth & Worship Pastor">
+              </div>
+              <div class="pastor-info-col">
+                <span class="pastor-role">Youth & Worship Pastor</span>
+                <h3 class="pastor-name">Pastor Youth Name</h3>
+                <p class="pastor-bio">
+                  Leading the Youth Ministry and Worship team, raising strong, spirit-filled leaders committed to serving Christ in truth and passion.
+                </p>
+                <a href="contact.html" class="btn btn-style-3" style="align-self: flex-start;">Connect With Us</a>
+              </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <button class="pastor-nav-btn pastor-prev" onclick="plusSlides(-1)">&#10094;</button>
+            <button class="pastor-nav-btn pastor-next" onclick="plusSlides(1)">&#10095;</button>
+
+          </div>
+
+          <!-- Dot Indicators -->
+          <div class="dots-holder">
+            <span class="slider-dot active" onclick="currentSlide(0)"></span>
+            <span class="slider-dot" onclick="currentSlide(1)"></span>
+            <span class="slider-dot" onclick="currentSlide(2)"></span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Quick Info Bar -->
+      <div class="page-section no-offset">
+        <div class="container wide">
+          <div class="our-info">
+            <div class="info-item">
+              <i class="licon-telephone"></i>
+              <div class="wrapper">
+                <p content="telephone=no"><a target="_blank" href="tel:+254 722-403-859">+254 722-403-859</a></p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="licon-map-marker"></i>
+              <div class="wrapper">
+                <p><a target="_blank" href="https://maps.app.goo.gl/YPSLjWfHC7xbJocCA">Jomvu Aldina, Mombasa</a></p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="licon-envelope"></i>
+              <div class="wrapper">
+                <p><a target="_top" href="mailto:jesustransforminglives@gmail.com?subject=Connect with us!">jesustransforminglives@gmail.com</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Newsletter & Footer -->
+    <div class="call-out newsletter">
+      <div class="container wide">
+        <div class="row align-items-center">
+          <div class="col-lg-7 offset-lg-1">
+            <h4 class="call-title f-left">Member Sign Up</h4>
+            <form id="newsletter" class="newsletter style-2">
+              <button type="submit" data-type="submit" class="btn btn-big btn-style-5 f-right"><i class="licon-envelope"></i></button>
+              <div class="wrapper">
+                <input type="email" name="newsletter-email" placeholder="Enter your email address">
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-4">
+            <ul class="social-icons style-2">
+              <li><a target="_blank" href="https://www.facebook.com/profile.php?id=100089651652273"><i class="icon-facebook"></i></a></li>
+              <li><a target="_blank" href="https://www.youtube.com/channel/UCVoVQXN3mfFocdWY2ioH16g"><i class="icon-youtube-play"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer id="footer" class="footer">
+      <div class="container wide">
+        <div class="main-footer">
+          <div class="row">
+            <div class="col-lg-3 col-sm-6">
+              <div class="widget">
+                <h5 class="widget-title">About Us</h5>
+                <p>JESUS TRANSFORMING LIVES int ministries was planted since 2014 in Kenya Mombasa Jomvu Aldina. Founders: Rev. Apostle Hezron Obilo Kisiara and Violet Obilo Kisiara</p>
+                <a href="give_serve.html" class="btn btn-style-8">Give Online</a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <div class="widget">
+                <h5 class="widget-title">New Here?</h5>
+                <ul class="menu-list">
+                  <li><a href="#">Location & Service Times</a></li>
+                  <li><a href="ministries.html">Next Steps</a></li>
+                  <li><a href="about_us.html">Vision & Beliefs</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <div class="widget">
+                <h5 class="widget-title">Ministries</h5>
+                <ul class="menu-list">
+                  <li><a href="ministries.html#kids">Kids</a></li>
+                  <li><a href="ministries.html#worship">Worship</a></li>
+                  <li><a href="ministries.html#youths">Youths</a></li>
+                  <li><a href="ministries.html#men">Men</a></li>
+                  <li><a href="ministries.html#women">Women</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <div class="widget">
+                <h5 class="widget-title">Main Menu</h5>
+                <ul class="menu-list">
+                  <li><a href="about_us.html">About Us</a></li>
+                  <li><a href="pastors.html">Pastors</a></li>
+                  <li><a href="ministries.html">Ministries</a></li>
+                  <li><a href="church_events.html">Events</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>Copyright © 2026 <a href="#">JTLIM Church</a>. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JS Libs & Plugins -->
+  <script src="js/libs/jquery.modernizr.js"></script>
+  <script src="js/libs/jquery-2.2.4.min.js"></script>
+  <script src="js/libs/jquery-ui.min.js"></script>
+  <script src="js/libs/retina.min.js"></script>
+  <script src="plugins/jquery.localScroll.min.js"></script>
+  <script src="plugins/jquery.scrollTo.min.js"></script>
+  <script src="plugins/fancybox/jquery.fancybox.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/script.js"></script>
+
+  <!-- Slideshow Script -->
+  <script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.pastor-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+
+    function showSlide(n) {
+      if (n >= slides.length) slideIndex = 0;
+      else if (n < 0) slideIndex = slides.length - 1;
+      else slideIndex = n;
+
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        dots[i].classList.remove('active');
+      });
+
+      slides[slideIndex].classList.add('active');
+      dots[slideIndex].classList.add('active');
+    }
+
+    function plusSlides(n) {
+      showSlide(slideIndex + n);
+    }
+
+    function currentSlide(n) {
+      showSlide(n);
+    }
+
+    // Auto Advance Slideshow Every 6 Seconds
+    setInterval(() => {
+      plusSlides(1);
+    }, 6000);
+  </script>
+
+</body>
+</html>
