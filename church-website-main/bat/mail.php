@@ -1,32 +1,91 @@
-<?php 
-	
-	// your email
-	$user_email = "mail@companyname.com";
+<?php
+/**
+ * mail.php
+ * Saves contact form messages into MySQL (XAMPP) — church_db.contact_messages
+ * Sends notification email via PHP's mail() using XAMPP's sendmail + Gmail SMTP
+ */
 
-	$mail = array(
-		"name" => htmlspecialchars($_POST['cf-name']),
-		"email" => htmlspecialchars($_POST['cf-email']),
-		"subject" => htmlspecialchars($_POST['cf-subject']),
-		"phone" => htmlspecialchars($_POST['cf-phone']),
-		"message" => htmlspecialchars($_POST['cf-message'])
-	);
-	
-	function validate($arr){
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-		return !empty($arr['name']) && strlen($arr['message']) > 20 && filter_var($arr['email'],FILTER_VALIDATE_EMAIL);
+// ---------- DB CONFIG ----------
+$DB_HOST = "127.0.0.1";
+$DB_NAME = "church_db";
+$DB_USER = "root";
+$DB_PASS = "";
 
-	}
+// ---------- EMAIL CONFIG ----------
+$TO_EMAIL   = "ceciliayvonne06@gmail.com";   // where you want to receive messages
+$FROM_EMAIL = "ceciliayvonne06@gmail.com";   // same Gmail used in sendmail.ini
 
-	if(validate($mail)){
+header("Content-Type: application/json");
 
-		echo mail($user_email, $mail['subject'], 
-			"Name : {$mail['name']}\n" 
-			."E-mail : {$mail['email']}\n"
-			."Phone : {$mail['phone']}\n"
-			."Message : {$mail['message']}" 
-		);
+// ---------- INPUT (matches your form's field names: cf-name, cf-email, etc.) ----------
+$name    = trim($_POST['cf-name'] ?? '');
+$email   = trim($_POST['cf-email'] ?? '');
+$phone   = trim($_POST['cf-phone'] ?? '');
+$subject = trim($_POST['cf-subject'] ?? '');
+$message = trim($_POST['cf-message'] ?? '');
 
-	}
+if (!$name || !$email || !$message) {
+    http_response_code(400);
+    echo json_encode(["success" => false, "error" => "Name, email, and message are required"]);
+    exit;
+}
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    http_response_code(400);
+    echo json_encode(["success" => false, "error" => "Invalid email address"]);
+    exit;
+}
 
+// ---------- DB CONNECT ----------
+try {
+    $pdo = new PDO(
+        "mysql:host=$DB_HOST;dbname=$DB_NAME;charset=utf8mb4",
+        $DB_USER,
+        $DB_PASS,
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+} catch (PDOException $e) {
+    http_response_code(500);
+    echo json_encode(["success" => false, "error" => "DB connection failed: " . $e->getMessage()]);
+    exit;
+}
 
-?>
+// ---------- SAVE TO DATABASE ----------
+try {
+    $stmt = $pdo->prepare(
+        "INSERT INTO contact_messages (name, email, phone, subject, message, created_at)
+         VALUES (?, ?, ?, ?, ?, NOW())"
+    );
+    $stmt->execute([$name, $email, $phone, $subject, $message]);
+} catch (PDOException $e) {
+    http_response_code(500);
+    echo json_encode(["success" => false, "error" => "Failed to save message: " . $e->getMessage()]);
+    exit;
+}
+
+$result = ["success" => true, "message" => "Message saved"];
+
+// ---------- SEND EMAIL ----------
+$emailSubject = "New contact form message: " . ($subject ?: "No subject");
+$emailBody = "Name: $name\n" .
+             "Email: $email\n" .
+             "Phone: $phone\n" .
+             "Subject: $subject\n\n" .
+             "Message:\n$message";
+
+$headers = "From: $FROM_EMAIL\r\n" .
+           "Reply-To: $email\r\n" .
+           "Content-Type: text/plain; charset=UTF-8";
+
+$sent = @mail($TO_EMAIL, $emailSubject, $emailBody, $headers);
+
+if ($sent) {
+    $result["email"] = "sent";
+} else {
+    $result["email"] = "failed";
+    $result["email_error"] = error_get_last()["message"] ?? "Unknown mail error";
+}
+
+echo json_encode($result);

@@ -793,6 +793,45 @@
 		}
 
 		/* ---------------------------------------------------- */
+		/*	M-Pesa STK Push										*/
+		/* ---------------------------------------------------- */
+
+		if ($('#mpesa-stk-form').length){
+
+			var mpesaForm = $('#mpesa-stk-form');
+			mpesaForm.append('<div class="message-container"></div>');
+
+			mpesaForm.on('submit', function(event){
+				var form = $(this);
+				var button = form.find('button[type="submit"]');
+				var message = form.find('.message-container');
+
+				button.prop('disabled', true);
+				message.html('<div class="alert-warning"><p>Sending payment prompt...</p></div>');
+
+				$.ajax({
+					url: 'bat/mpesa-stk.php',
+					type: 'POST',
+					data: form.serialize(),
+					dataType: 'json'
+				}).done(function(response){
+					var text = response.message || 'Please check your phone for the M-Pesa prompt.';
+					var alertClass = response.success ? 'alert-success' : 'alert-error';
+					message.html('<div class="' + alertClass + '"><p>' + text + '</p></div>');
+					if (response.success) form.find('input').val('');
+				}).fail(function(xhr){
+					var response = xhr.responseJSON || {};
+					var text = response.message || 'Unable to start the payment. Please try again later.';
+					message.html('<div class="alert-error"><p>' + text + '</p></div>');
+				}).always(function(){
+					button.prop('disabled', false);
+				});
+
+				event.preventDefault();
+			});
+		}
+
+		/* ---------------------------------------------------- */
 		/*	Google Maps											*/
 		/* ---------------------------------------------------- */
 
