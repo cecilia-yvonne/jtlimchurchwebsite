@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/config.php';
 
 header('Content-Type: application/json');
 
@@ -27,12 +28,7 @@ if ($amount === false || $amount < 1) {
     respond(false, 'Enter a valid whole-number amount in KES.', 400);
 }
 
-$consumerKey = 'CHAmdvLv8279nYl0vc77aA63xmr7gEExSGzO8ZdWCm318vzr';
-$consumerSecret = 'qkTIEN3yYcR0fHbM75H4L4PASFdjhOJAJRwhYwyW2iggpXznk2coAuLhKp1HLSKe';
-$shortcode = '174379'; // sandbox test shortcode
 $accountReference = 'JTLIM Church';
-$passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919';
-$callbackUrl = 'https://charcoal-crop-lifter.ngrok-free.dev/jtlim%20church%20website/church-website-main/bat/mpesa-callback.php';
 $environment = 'sandbox';
 
 $apiBase = $environment === 'sandbox'
